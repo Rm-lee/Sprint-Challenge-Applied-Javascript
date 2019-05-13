@@ -10,13 +10,15 @@ class TabLink {
     
 
     // Check to see if this.tabData is equal to 'all'
-    if(this.tabData === "all"){
+    if(this.tabData == "all"){
         
       // If `all` is true, select all cards regardless of their data attribute values
        this.cards = document.querySelectorAll('.card');
+      
     } else {
       // else if `all` is false, only select the cards with matching this.tabData values
-       this.cards = document.querySelectorAll(`.card[data-tab='${this.element.dataset.tab}']`);
+       this.cards = document.querySelectorAll(`.card[data-tab='${this.tabData}']`);
+       
     }
     
 
@@ -50,21 +52,21 @@ class TabLink {
      });
     
     // Add a class of ".active-tab" to this.tabElement
-     this.tabElement.add('active-tab');
+     this.tabElement.classList.add('active-tab');
   
     // Notice we are looping through the this.cards array and invoking selectCard() from the TabCard class. Just un-comment the code and study what is happening here.
-    // this.cards.forEach(card => card.selectCard());
+     this.cards.forEach(card => card.selectCard());
   }
 }
 
 class TabCard {
   constructor(cardElement){
     // Assign this.cardElement to the cardElement DOM reference
-    // this.cardElement;
+     this.cardElement = cardElement;
   }
   selectCard(){
     // Update the style of this.cardElement to display = "flex"
-    // this.cardElement;
+     this.cardElement.style.display = 'flex';
   }
 
 }
@@ -78,4 +80,7 @@ class TabCard {
 - In your .forEach() method's callback function, return a new instance of TabLink and pass in each tab as a parameter
 
 */
-let tabs = document.querySelectorAll();
+let tabs = document.querySelectorAll('.tab');
+tabs.forEach(element => {
+  return new TabLink(element)
+});
