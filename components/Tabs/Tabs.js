@@ -1,6 +1,7 @@
 class TabLink {
   constructor(tabElement){
     // assign this.tabElement to the tabElement DOM reference
+    //set this.tabElement to dom element passed into constructor
      this.tabElement = tabElement;
     
     // Get the `data-tab` value from this.tabElement and store it here
@@ -10,11 +11,12 @@ class TabLink {
     
 
     // Check to see if this.tabData is equal to 'all'
+    // if this.tabData is equal to the word all, select every card
     if(this.tabData == "all"){
         
       // If `all` is true, select all cards regardless of their data attribute values
        this.cards = document.querySelectorAll('.card');
-      
+      //else if not all get specific cards that apply
     } else {
       // else if `all` is false, only select the cards with matching this.tabData values
        this.cards = document.querySelectorAll(`.card[data-tab='${this.tabData}']`);
@@ -62,10 +64,12 @@ class TabLink {
 class TabCard {
   constructor(cardElement){
     // Assign this.cardElement to the cardElement DOM reference
+    // set this.cardElement to passed in cardElement
      this.cardElement = cardElement;
   }
   selectCard(){
     // Update the style of this.cardElement to display = "flex"
+    // change display style to flex from none
      this.cardElement.style.display = 'flex';
   }
 
